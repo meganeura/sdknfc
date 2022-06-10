@@ -1,0 +1,354 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.6 (swiftlang-5.6.0.323.62 clang-1316.0.20.8)
+// swift-module-flags: -target arm64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name DotNfc
+import CommonCrypto
+import CoreNFC
+import CryptoKit
+import CryptoTokenKit
+@_exported import DotNfc
+import Foundation
+import OpenSSL
+import Swift
+import UIKit
+import _Concurrency
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, *)
+@objc(DOTTravelDocument) final public class TravelDocument : ObjectiveC.NSObject {
+  @objc final public let ldsVersion: Swift.String
+  @objc final public let accessControlProtocolUsed: DotNfc.AccessControlProtocol
+  @objc final public let passiveAuthenticationStatus: DotNfc.PassiveAuthenticationStatus
+  @objc final public let activeAuthenticationStatus: DotNfc.ActiveAuthenticationStatus
+  @objc final public let machineReadableZoneInformation: DotNfc.MachineReadableZoneInformation
+  @objc final public let encodedIdentificationFeaturesFace: DotNfc.EncodedIdentificationFeaturesFace?
+  @objc final public let displayedSignatureOrUsualMark: DotNfc.DisplayedSignatureOrUsualMark?
+  @objc final public let additionalPersonalDetails: DotNfc.AdditionalPersonalDetails?
+  @objc final public let additionalDocumentDetails: DotNfc.AdditionalDocumentDetails?
+  @objc final public let optionalDetails: DotNfc.OptionalDetails?
+  @objc public init(ldsVersion: Swift.String, accessControlProtocolUsed: DotNfc.AccessControlProtocol, passiveAuthenticationStatus: DotNfc.PassiveAuthenticationStatus, activeAuthenticationStatus: DotNfc.ActiveAuthenticationStatus, machineReadableZoneInformation: DotNfc.MachineReadableZoneInformation, encodedIdentificationFeaturesFace: DotNfc.EncodedIdentificationFeaturesFace?, displayedSignatureOrUsualMark: DotNfc.DisplayedSignatureOrUsualMark?, additionalPersonalDetails: DotNfc.AdditionalPersonalDetails?, additionalDocumentDetails: DotNfc.AdditionalDocumentDetails?, optionalDetails: DotNfc.OptionalDetails?)
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@available(iOS 13, *)
+@objc(DOTActiveAuthenticationStatus) public enum ActiveAuthenticationStatus : Swift.Int, Swift.CustomStringConvertible {
+  case success
+  case failed
+  case notSupported
+  public var description: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, *)
+@objc(DOTNfcKey) final public class NfcKey : ObjectiveC.NSObject {
+  public enum Error : Foundation.LocalizedError {
+    case invalidDateOfExpiry
+    case invalidDateOfBirth
+    public var errorDescription: Swift.String? {
+      get
+    }
+    public static func == (a: DotNfc.NfcKey.Error, b: DotNfc.NfcKey.Error) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  @objc final public let documentNumber: Swift.String
+  @objc final public let dateOfExpiry: Swift.String
+  @objc final public let dateOfBirth: Swift.String
+  @objc public init(documentNumber: Swift.String, dateOfExpiry: Swift.String, dateOfBirth: Swift.String) throws
+  @objc deinit
+}
+@objc(DOTAccessControlProtocol) public enum AccessControlProtocol : Swift.Int, Swift.CustomStringConvertible {
+  case bac
+  case pace
+  public var description: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, *)
+@objc(DOTOptionalDetails) final public class OptionalDetails : ObjectiveC.NSObject {
+  @objc final public let content: Foundation.Data?
+  @objc public init(content: Foundation.Data?)
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@available(iOS 13, *)
+@objc(DOTNfcTravelDocumentReaderDelegate) public protocol NfcTravelDocumentReaderDelegate {
+  @objc func nfcTravelDocumentReader(_ nfcTravelDocumentReader: DotNfc.NfcTravelDocumentReader, succeeded travelDocument: DotNfc.TravelDocument)
+  @objc func nfcTravelDocumentReader(_ nfcTravelDocumentReader: DotNfc.NfcTravelDocumentReader, failed error: DotNfc.NfcTravelDocumentReaderError)
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc final public class DotNfcLibrary : ObjectiveC.NSObject {
+  @objc public static let versionName: Swift.String
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @available(iOS 13, *)
+@objc(DotNfcLocalization) final public class Localization : ObjectiveC.NSObject {
+  @objc public static var localizationDictionary: [Swift.String : Swift.String]?
+  @objc public static var useLocalizationDictionary: Swift.Bool
+  @objc public static var bundle: Foundation.Bundle
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, *)
+@objc(DOTAdditionalDocumentDetails) final public class AdditionalDocumentDetails : ObjectiveC.NSObject {
+  @objc final public let issuingAuthority: Swift.String?
+  @objc final public let dateOfIssue: Swift.String?
+  @objc final public let endorsementsOrObservations: Swift.String?
+  @objc final public let taxOrExitRequirements: Swift.String?
+  @objc final public let personalizationTime: Swift.String?
+  @objc final public let personalizationDeviceSerialNumber: Swift.String?
+  @objc public init(issuingAuthority: Swift.String?, dateOfIssue: Swift.String?, endorsementsOrObservations: Swift.String?, taxOrExitRequirements: Swift.String?, personalizationTime: Swift.String?, personalizationDeviceSerialNumber: Swift.String?)
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, *)
+@objc(DOTEncodedIdentificationFeaturesFace) final public class EncodedIdentificationFeaturesFace : ObjectiveC.NSObject {
+  @objc final public let faceImage: DotNfc.Image?
+  @objc public init(faceImage: DotNfc.Image?)
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, *)
+@objc(DotNfcLogger) final public class Logger : ObjectiveC.NSObject {
+  @objc public static var logLevel: DotNfc.Logger.LogLevel
+  @objc(DotNfcLoggerLogLevel) public enum LogLevel : Swift.Int, Swift.CustomStringConvertible {
+    case info
+    case debug
+    case warning
+    case error
+    case none
+    public var description: Swift.String {
+      get
+    }
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  @objc public static func info(_ message: Swift.String? = nil, file: Swift.String = #file, function: Swift.String = #function)
+  @objc public static func debug(_ message: Swift.String? = nil, file: Swift.String = #file, function: Swift.String = #function)
+  @objc public static func warning(_ message: Swift.String? = nil, file: Swift.String = #file, function: Swift.String = #function)
+  @objc public static func error(_ message: Swift.String? = nil, file: Swift.String = #file, function: Swift.String = #function)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, *)
+@objc(DOTNameOfHolder) final public class NameOfHolder : ObjectiveC.NSObject {
+  @objc final public let primaryIdentifier: Swift.String
+  @objc final public let secondaryIdentifier: Swift.String
+  @objc public init(primaryIdentifier: Swift.String, secondaryIdentifier: Swift.String)
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc override final public func isEqual(_ object: Any?) -> Swift.Bool
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @available(iOS 13, *)
+@objc public class FlatTagStructureParser : ObjectiveC.NSObject {
+  public enum Error : Foundation.LocalizedError {
+    case invalidStructure
+    public var errorDescription: Swift.String? {
+      get
+    }
+    public static func == (a: DotNfc.FlatTagStructureParser.Error, b: DotNfc.FlatTagStructureParser.Error) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  @objc public func parse(value: Foundation.Data) throws -> [Swift.Int : Foundation.Data]
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, *)
+@objc(DOTNfcTravelDocumentReader) final public class NfcTravelDocumentReader : ObjectiveC.NSObject {
+  @objc final public let configuration: DotNfc.NfcTravelDocumentReaderConfiguration
+  @objc public init(configuration: DotNfc.NfcTravelDocumentReaderConfiguration)
+  @objc final public func setDelegate(_ delegate: DotNfc.NfcTravelDocumentReaderDelegate?, queue: Dispatch.DispatchQueue? = .main)
+  @objc final public func read(nfcKey: DotNfc.NfcKey)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc(DOTNfcTravelDocumentReaderConfiguration) final public class NfcTravelDocumentReaderConfiguration : ObjectiveC.NSObject {
+  @objc final public let authorityCertificatesUrl: Foundation.URL?
+  @objc public init(authorityCertificatesUrl: Foundation.URL? = nil)
+  @objc deinit
+}
+@available(iOS 13, *)
+@objc(DOTPassiveAuthenticationStatus) public enum PassiveAuthenticationStatus : Swift.Int, Swift.CustomStringConvertible {
+  case success
+  case failed
+  case notSupported
+  case authorityCertificatesNotProvided
+  public var description: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, *)
+@objc(DOTDisplayedSignatureOrUsualMark) final public class DisplayedSignatureOrUsualMark : ObjectiveC.NSObject {
+  @objc final public let displayedSignatureOrUsualMarkImage: DotNfc.Image?
+  @objc public init(displayedSignatureOrUsualMarkImage: DotNfc.Image?)
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@available(iOS 13, *)
+@objc(DOTNfcTravelDocumentReaderErrorType) public enum NfcTravelDocumentReaderErrorType : Swift.Int {
+  case accessControlError
+  case readingError
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, *)
+@objc(DOTNfcTravelDocumentReaderError) final public class NfcTravelDocumentReaderError : ObjectiveC.NSObject, Foundation.LocalizedError {
+  @objc final public let errorType: DotNfc.NfcTravelDocumentReaderErrorType
+  @objc final public var errorDescription: Swift.String? {
+    @objc get
+  }
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, *)
+@objc(DOTMachineReadableZoneInformation) final public class MachineReadableZoneInformation : ObjectiveC.NSObject {
+  @objc final public let documentCode: Swift.String
+  @objc final public let issuingStateOrOrganization: Swift.String
+  @objc final public let nameOfHolder: DotNfc.NameOfHolder
+  @objc final public let nationality: Swift.String
+  @objc final public let documentNumber: Swift.String
+  @objc final public let dateOfBirth: Swift.String
+  @objc final public let sex: Swift.String
+  @objc final public let dateOfExpiry: Swift.String
+  @objc final public let optionalData: [Swift.String]
+  @objc public init(documentCode: Swift.String, issuingStateOrOrganization: Swift.String, nameOfHolder: DotNfc.NameOfHolder, nationality: Swift.String, documentNumber: Swift.String, dateOfBirth: Swift.String, sex: Swift.String, dateOfExpiry: Swift.String, optionalData: [Swift.String])
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, *)
+@objc(DOTAdditionalPersonalDetails) final public class AdditionalPersonalDetails : ObjectiveC.NSObject {
+  @objc final public let nameOfHolder: DotNfc.NameOfHolder?
+  @objc final public let otherNames: [Swift.String]?
+  @objc final public let personalNumber: Swift.String?
+  @objc final public let fullDateOfBirth: Swift.String?
+  @objc final public let placeOfBirth: [Swift.String]?
+  @objc final public let address: [Swift.String]?
+  @objc final public let telephone: Swift.String?
+  @objc final public let profession: Swift.String?
+  @objc final public let title: Swift.String?
+  @objc final public let personalSummary: Swift.String?
+  @objc final public let otherValidTravelDocumentNumbers: [Swift.String]?
+  @objc final public let custodyInformation: Swift.String?
+  @objc public init(nameOfHolder: DotNfc.NameOfHolder?, otherNames: [Swift.String]?, personalNumber: Swift.String?, fullDateOfBirth: Swift.String?, placeOfBirth: [Swift.String]?, address: [Swift.String]?, telephone: Swift.String?, profession: Swift.String?, title: Swift.String?, personalSummary: Swift.String?, otherValidTravelDocumentNumbers: [Swift.String]?, custodyInformation: Swift.String?)
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@available(iOS 13, *)
+@objc(DOTImageFormat) public enum ImageFormat : Swift.Int, Swift.CustomStringConvertible {
+  case jpeg
+  case jpeg2000
+  public var description: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, *)
+@objc(DOTNImageSize) final public class ImageSize : ObjectiveC.NSObject {
+  @objc final public let width: Swift.Int
+  @objc final public let height: Swift.Int
+  @objc public init(width: Swift.Int, height: Swift.Int)
+  @objc final public func calculatePixelCount() -> Swift.Int
+  @objc final public func calculateWidthToHeightRatio() -> Swift.Double
+  @objc override final public func isEqual(_ object: Any?) -> Swift.Bool
+  @objc override final public var hash: Swift.Int {
+    @objc get
+  }
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, *)
+@objc(DOTNImage) final public class Image : ObjectiveC.NSObject {
+  @objc final public let bytes: Foundation.Data
+  @objc final public let format: DotNfc.ImageFormat
+  @objc final public let size: DotNfc.ImageSize
+  @objc public init(bytes: Foundation.Data, format: DotNfc.ImageFormat, size: DotNfc.ImageSize)
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@available(iOS 13, *)
+extension DotNfc.ActiveAuthenticationStatus : Swift.Equatable {}
+@available(iOS 13, *)
+extension DotNfc.ActiveAuthenticationStatus : Swift.Hashable {}
+@available(iOS 13, *)
+extension DotNfc.ActiveAuthenticationStatus : Swift.RawRepresentable {}
+@available(iOS 13, *)
+extension DotNfc.NfcKey.Error : Swift.Equatable {}
+@available(iOS 13, *)
+extension DotNfc.NfcKey.Error : Swift.Hashable {}
+extension DotNfc.AccessControlProtocol : Swift.Equatable {}
+extension DotNfc.AccessControlProtocol : Swift.Hashable {}
+extension DotNfc.AccessControlProtocol : Swift.RawRepresentable {}
+@available(iOS 13, *)
+extension DotNfc.Logger.LogLevel : Swift.Equatable {}
+@available(iOS 13, *)
+extension DotNfc.Logger.LogLevel : Swift.Hashable {}
+@available(iOS 13, *)
+extension DotNfc.Logger.LogLevel : Swift.RawRepresentable {}
+@available(iOS 13, *)
+extension DotNfc.FlatTagStructureParser.Error : Swift.Equatable {}
+@available(iOS 13, *)
+extension DotNfc.FlatTagStructureParser.Error : Swift.Hashable {}
+@available(iOS 13, *)
+extension DotNfc.PassiveAuthenticationStatus : Swift.Equatable {}
+@available(iOS 13, *)
+extension DotNfc.PassiveAuthenticationStatus : Swift.Hashable {}
+@available(iOS 13, *)
+extension DotNfc.PassiveAuthenticationStatus : Swift.RawRepresentable {}
+@available(iOS 13, *)
+extension DotNfc.NfcTravelDocumentReaderErrorType : Swift.Equatable {}
+@available(iOS 13, *)
+extension DotNfc.NfcTravelDocumentReaderErrorType : Swift.Hashable {}
+@available(iOS 13, *)
+extension DotNfc.NfcTravelDocumentReaderErrorType : Swift.RawRepresentable {}
+@available(iOS 13, *)
+extension DotNfc.ImageFormat : Swift.Equatable {}
+@available(iOS 13, *)
+extension DotNfc.ImageFormat : Swift.Hashable {}
+@available(iOS 13, *)
+extension DotNfc.ImageFormat : Swift.RawRepresentable {}
